@@ -9,6 +9,8 @@ import java.util.List;
 
 import java.util.Optional;
 
+
+
 public class AddressBook {
     private String name;
     private List<Contact> contacts;
@@ -48,5 +50,10 @@ public class AddressBook {
         contacts.remove(oldContact);
         contacts.add(newContact);
         System.out.println("Contact updated successfully.");
+    }
+
+    public void deleteContact(Contact contact) {
+        contacts.remove(contact);
+        System.out.println("Contact deleted successfully.");
     }
 }

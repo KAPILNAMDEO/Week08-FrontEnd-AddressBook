@@ -9,7 +9,6 @@ import java.util.Scanner;
 import java.util.*;
 
 
-
 public class AddressBookMain {
     private static final Map<String, AddressBook> addressBooks = new HashMap<>();
     private static final Scanner scanner = new Scanner(System.in);
@@ -71,7 +70,8 @@ public class AddressBookMain {
             System.out.println("1. Add Contact");
             System.out.println("2. Display Contacts");
             System.out.println("3. Edit Contact");
-            System.out.println("4. Go Back");
+            System.out.println("4. Delete Contact");
+            System.out.println("5. Go Back");
             System.out.print("Enter choice: ");
 
             int choice = scanner.nextInt();
@@ -88,6 +88,9 @@ public class AddressBookMain {
                     editContact(selectedBook);
                     break;
                 case 4:
+                    deleteContact(selectedBook);
+                    break;
+                case 5:
                     return;
                 default:
                     System.out.println("Invalid choice, try again.");
@@ -166,6 +169,22 @@ public class AddressBookMain {
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
+    }
+
+    private static void deleteContact(AddressBook addressBook) {
+        System.out.print("Enter First Name of Contact to Delete: ");
+        String firstName = scanner.nextLine();
+        System.out.print("Enter Last Name of Contact to Delete: ");
+        String lastName = scanner.nextLine();
+
+        Optional<Contact> contactOptional = addressBook.findContactByName(firstName, lastName);
+        if (contactOptional.isEmpty()) {
+            System.out.println("Contact not found.");
+            return;
+        }
+
+        Contact contact = contactOptional.get();
+        addressBook.deleteContact(contact);
     }
 
     private static void displayAllAddressBooks() {
