@@ -5,6 +5,14 @@ import com.addressbookapp.model.Contact;
 import com.addressbookapp.service.AddressBook;
 import java.util.Scanner;
 
+
+
+
+
+import com.addressbookapp.model.Contact;
+import com.addressbookapp.service.AddressBook;
+import java.util.Scanner;
+
 public class AddressBookMain {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -22,26 +30,30 @@ public class AddressBookMain {
 
             switch (choice) {
                 case 1:
-                    System.out.print("First Name: ");
-                    String firstName = scanner.nextLine();
-                    System.out.print("Last Name: ");
-                    String lastName = scanner.nextLine();
-                    System.out.print("Address: ");
-                    String address = scanner.nextLine();
-                    System.out.print("City: ");
-                    String city = scanner.nextLine();
-                    System.out.print("State: ");
-                    String state = scanner.nextLine();
-                    System.out.print("Zip Code: ");
-                    int zip = scanner.nextInt();
-                    System.out.print("Phone Number: ");
-                    long phoneNumber = scanner.nextLong();
-                    scanner.nextLine(); // Consume newline
-                    System.out.print("Email: ");
-                    String email = scanner.nextLine();
+                    try {
+                        System.out.print("First Name: ");
+                        String firstName = scanner.nextLine();
+                        System.out.print("Last Name: ");
+                        String lastName = scanner.nextLine();
+                        System.out.print("Address: ");
+                        String address = scanner.nextLine();
+                        System.out.print("City: ");
+                        String city = scanner.nextLine();
+                        System.out.print("State: ");
+                        String state = scanner.nextLine();
+                        System.out.print("Zip Code: ");
+                        int zip = scanner.nextInt();
+                        System.out.print("Phone Number: ");
+                        long phoneNumber = scanner.nextLong();
+                        scanner.nextLine(); // Consume newline
+                        System.out.print("Email: ");
+                        String email = scanner.nextLine();
 
-                    Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-                    addressBook.addContact(contact);
+                        Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+                        addressBook.addContact(contact);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
                     break;
 
                 case 2:
