@@ -23,15 +23,17 @@ class AddressBook {
         }
     }
 
-    /** 🔹 Sort contacts alphabetically by full name */
-    sortContactsByName() {
-        this.contacts.sort((a, b) => {
-            let nameA = `${a.firstName} ${a.lastName}`.toLowerCase();
-            let nameB = `${b.firstName} ${b.lastName}`.toLowerCase();
-            return nameA.localeCompare(nameB);
-        });
+    /** 🔹 Sort contacts by City, State, or Zip */
+    sortBy(attribute) {
+        const validAttributes = ["city", "state", "zip"];
+        if (!validAttributes.includes(attribute)) {
+            console.log("Invalid sorting attribute. Choose from 'city', 'state', or 'zip'.");
+            return;
+        }
 
-        console.log("\nSorted Contacts by Name:");
+        this.contacts.sort((a, b) => a[attribute].toLowerCase().localeCompare(b[attribute].toLowerCase()));
+
+        console.log(`\nSorted Contacts by ${attribute.charAt(0).toUpperCase() + attribute.slice(1)}:`);
         this.contacts.map(contact => contact.toString()).forEach(entry => console.log(entry));
     }
 }

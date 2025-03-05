@@ -9,7 +9,10 @@ while (true) {
     console.log("1. Add Contact");
     console.log("2. Display Contacts");
     console.log("3. Sort Contacts by Name");
-    console.log("4. Exit");
+    console.log("4. Sort Contacts by City");
+    console.log("5. Sort Contacts by State");
+    console.log("6. Sort Contacts by Zip");
+    console.log("7. Exit");
 
     let choice = readline.questionInt("Enter your choice: ");
 
@@ -37,10 +40,22 @@ while (true) {
             break;
 
         case 3:
-            myAddressBook.sortContactsByName();
+            myAddressBook.sortBy("name");
             break;
 
         case 4:
+            myAddressBook.sortBy("city");
+            break;
+
+        case 5:
+            myAddressBook.sortBy("state");
+            break;
+
+        case 6:
+            myAddressBook.sortBy("zip");
+            break;
+
+        case 7:
             console.log("Exiting...");
             process.exit();
 
