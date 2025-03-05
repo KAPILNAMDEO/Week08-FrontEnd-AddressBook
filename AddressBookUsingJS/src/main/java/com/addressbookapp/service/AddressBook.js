@@ -1,19 +1,15 @@
 class AddressBook {
-    constructor() {
+    constructor(name) {
+        this.name = name;
         this.contacts = [];
     }
 
     addContact(contact) {
-        let duplicate = this.contacts.filter(c => 
-            c.firstName.toLowerCase() === contact.firstName.toLowerCase() && 
-            c.lastName.toLowerCase() === contact.lastName.toLowerCase()
-        );
-
-        if (duplicate.length > 0) {
-            console.log("Contact already exists! Duplicate entries are not allowed.");
+        if (this.contacts.some(c => c.firstName.toLowerCase() === contact.firstName.toLowerCase() &&
+                                    c.lastName.toLowerCase() === contact.lastName.toLowerCase())) {
+            console.log("Duplicate contact found. Cannot add.");
             return;
         }
-
         this.contacts.push(contact);
         console.log("Contact added successfully.");
     }
@@ -22,27 +18,21 @@ class AddressBook {
         if (this.contacts.length === 0) {
             console.log("No contacts found.");
         } else {
-            console.log("\nAddress Book Contacts:");
-            this.contacts.map(contact => console.log(contact.toString()));
+            console.log(`\nContacts in ${this.name} Address Book:`);
+            this.contacts.forEach(contact => console.log(contact.toString()));
         }
     }
 
-    // Get persons count by city
-    getCountByCity(city) {
-        let count = this.contacts.filter(contact => 
-            contact.city.toLowerCase() === city.toLowerCase()
-        ).reduce((total) => total + 1, 0);
+    /** 🔹 Sort contacts alphabetically by full name */
+    sortContactsByName() {
+        this.contacts.sort((a, b) => {
+            let nameA = `${a.firstName} ${a.lastName}`.toLowerCase();
+            let nameB = `${b.firstName} ${b.lastName}`.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
 
-        console.log(`\nNumber of persons in ${city}: ${count}`);
-    }
-
-    // Get persons count by state
-    getCountByState(state) {
-        let count = this.contacts.filter(contact => 
-            contact.state.toLowerCase() === state.toLowerCase()
-        ).reduce((total) => total + 1, 0);
-
-        console.log(`\nNumber of persons in ${state}: ${count}`);
+        console.log("\nSorted Contacts by Name:");
+        this.contacts.map(contact => contact.toString()).forEach(entry => console.log(entry));
     }
 }
 

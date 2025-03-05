@@ -1,18 +1,15 @@
 const readline = require("readline-sync");
 const AddressBook = require("./AddressBook");
-const Contact = require("./contact");
+const Contact = require("./Contact");
 
-let myAddressBook = new AddressBook();
+let myAddressBook = new AddressBook("Personal");
 
 while (true) {
     console.log("\nAddress Book Menu:");
     console.log("1. Add Contact");
     console.log("2. Display Contacts");
-    console.log("3. View Persons by City");
-    console.log("4. View Persons by State");
-    console.log("5. Get Count by City");
-    console.log("6. Get Count by State");
-    console.log("7. Exit");
+    console.log("3. Sort Contacts by Name");
+    console.log("4. Exit");
 
     let choice = readline.questionInt("Enter your choice: ");
 
@@ -40,31 +37,14 @@ while (true) {
             break;
 
         case 3:
-            let city = readline.question("Enter City to View Persons: ");
-            myAddressBook.viewPersonsByCity(city);
+            myAddressBook.sortContactsByName();
             break;
 
         case 4:
-            let state = readline.question("Enter State to View Persons: ");
-            myAddressBook.viewPersonsByState(state);
-            break;
-
-        case 5:
-            let cityCount = readline.question("Enter City to Get Count: ");
-            myAddressBook.getCountByCity(cityCount);
-            break;
-
-        case 6:
-            let stateCount = readline.question("Enter State to Get Count: ");
-            myAddressBook.getCountByState(stateCount);
-            break;
-
-        case 7:
-            console.log("Exiting Address Book...");
+            console.log("Exiting...");
             process.exit();
 
         default:
             console.log("Invalid choice, please try again.");
     }
 }
-git 
