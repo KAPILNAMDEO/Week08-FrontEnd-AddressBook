@@ -8,11 +8,9 @@ while (true) {
     console.log("\nAddress Book Menu:");
     console.log("1. Add Contact");
     console.log("2. Display Contacts");
-    console.log("3. Delete Contact");
-    console.log("4. Count Contacts");
-    console.log("5. Search by City");
-    console.log("6. Search by State");
-    console.log("7. Exit");
+    console.log("3. View Persons by City");
+    console.log("4. View Persons by State");
+    console.log("5. Exit");
 
     let choice = readline.questionInt("Enter your choice: ");
 
@@ -40,26 +38,16 @@ while (true) {
             break;
 
         case 3:
-            let deleteFirstName = readline.question("Enter First Name to Delete: ");
-            let deleteLastName = readline.question("Enter Last Name to Delete: ");
-            myAddressBook.deleteContact(deleteFirstName, deleteLastName);
+            let city = readline.question("Enter City to View Persons: ");
+            myAddressBook.viewPersonsByCity(city);
             break;
 
         case 4:
-            console.log("Total Contacts:", myAddressBook.getContactCount());
+            let state = readline.question("Enter State to View Persons: ");
+            myAddressBook.viewPersonsByState(state);
             break;
 
         case 5:
-            let searchCity = readline.question("Enter City to Search: ");
-            myAddressBook.searchByCity(searchCity);
-            break;
-
-        case 6:
-            let searchState = readline.question("Enter State to Search: ");
-            myAddressBook.searchByState(searchState);
-            break;
-
-        case 7:
             console.log("Exiting Address Book...");
             process.exit();
 
