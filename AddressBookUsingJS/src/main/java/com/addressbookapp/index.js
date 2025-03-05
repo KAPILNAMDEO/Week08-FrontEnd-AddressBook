@@ -5,12 +5,14 @@ const Contact = require("./contact");
 let myAddressBook = new AddressBook();
 
 while (true) {
-    console.log("\n Address Book Menu:");
-    console.log("1️ Add Contact");
-    console.log("2️ Display Contacts");
-    console.log("3️ Delete Contact");
-    console.log("4️ Count Contacts");
-    console.log("5️ Exit");
+    console.log("\nAddress Book Menu:");
+    console.log("1. Add Contact");
+    console.log("2. Display Contacts");
+    console.log("3. Delete Contact");
+    console.log("4. Count Contacts");
+    console.log("5. Search by City");
+    console.log("6. Search by State");
+    console.log("7. Exit");
 
     let choice = readline.questionInt("Enter your choice: ");
 
@@ -44,14 +46,24 @@ while (true) {
             break;
 
         case 4:
-            console.log(" Total Contacts:", myAddressBook.getContactCount());
+            console.log("Total Contacts:", myAddressBook.getContactCount());
             break;
 
         case 5:
-            console.log(" Exiting Address Book...");
+            let searchCity = readline.question("Enter City to Search: ");
+            myAddressBook.searchByCity(searchCity);
+            break;
+
+        case 6:
+            let searchState = readline.question("Enter State to Search: ");
+            myAddressBook.searchByState(searchState);
+            break;
+
+        case 7:
+            console.log("Exiting Address Book...");
             process.exit();
 
         default:
-            console.log(" Invalid choice, please try again.");
+            console.log("Invalid choice, please try again.");
     }
 }

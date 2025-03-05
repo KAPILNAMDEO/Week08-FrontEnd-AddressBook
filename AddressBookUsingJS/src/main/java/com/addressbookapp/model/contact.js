@@ -11,7 +11,7 @@ class Contact {
     }
 
     toString() {
-        return ` ${this.firstName} ${this.lastName},  ${this.city}, ${this.state}, ${this.zip}, ${this.phoneNumber},  ${this.email}`;
+        return `${this.firstName} ${this.lastName}, ${this.city}, ${this.state}, ${this.zip}, ${this.phoneNumber}, ${this.email}`;
     }
 }
 

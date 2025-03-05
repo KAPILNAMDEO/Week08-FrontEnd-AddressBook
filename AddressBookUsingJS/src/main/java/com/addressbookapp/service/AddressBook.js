@@ -11,19 +11,19 @@ class AddressBook {
         );
 
         if (duplicate.length > 0) {
-            console.log("❌ Contact already exists! Duplicate entries are not allowed.");
+            console.log("Contact already exists! Duplicate entries are not allowed.");
             return;
         }
 
         this.contacts.push(contact);
-        console.log("✅ Contact added successfully.");
+        console.log("Contact added successfully.");
     }
 
     displayContacts() {
         if (this.contacts.length === 0) {
-            console.log("📂 No contacts found.");
+            console.log("No contacts found.");
         } else {
-            console.log("\n📜 Address Book Contacts:");
+            console.log("\nAddress Book Contacts:");
             this.contacts.map(contact => console.log(contact.toString()));
         }
     }
@@ -43,15 +43,35 @@ class AddressBook {
 
         if (index !== -1) {
             this.contacts.splice(index, 1);
-            console.log("🗑️ Contact deleted successfully.");
+            console.log("Contact deleted successfully.");
         } else {
-            console.log("⚠️ Contact not found.");
+            console.log("Contact not found.");
         }
     }
 
     getContactCount() {
         return this.contacts.reduce(count => count + 1, 0);
     }
-}
 
-module.exports = AddressBook;
+    // Search contacts by city
+    searchByCity(city) {
+        let results = this.contacts.filter(contact => 
+            contact.city.toLowerCase() === city.toLowerCase()
+        );
+
+        if (results.length > 0) {
+            console.log(`\nPeople in ${city}:`);
+            results.map(contact => console.log(contact.toString()));
+        } else {
+            console.log(`No contacts found in ${city}.`);
+        }
+    }
+
+    // Search contacts by state
+    searchByState(state) {
+        let results = this.contacts.filter(contact => 
+            contact.state.toLowerCase() === state.toLowerCase()
+        );
+
+        if (results.length > 0) {
+            conso
