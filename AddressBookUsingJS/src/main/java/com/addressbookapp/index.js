@@ -10,7 +10,9 @@ while (true) {
     console.log("2. Display Contacts");
     console.log("3. View Persons by City");
     console.log("4. View Persons by State");
-    console.log("5. Exit");
+    console.log("5. Get Count by City");
+    console.log("6. Get Count by State");
+    console.log("7. Exit");
 
     let choice = readline.questionInt("Enter your choice: ");
 
@@ -48,6 +50,16 @@ while (true) {
             break;
 
         case 5:
+            let cityCount = readline.question("Enter City to Get Count: ");
+            myAddressBook.getCountByCity(cityCount);
+            break;
+
+        case 6:
+            let stateCount = readline.question("Enter State to Get Count: ");
+            myAddressBook.getCountByState(stateCount);
+            break;
+
+        case 7:
             console.log("Exiting Address Book...");
             process.exit();
 
@@ -55,3 +67,4 @@ while (true) {
             console.log("Invalid choice, please try again.");
     }
 }
+git 

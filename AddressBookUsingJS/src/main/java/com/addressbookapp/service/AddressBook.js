@@ -27,32 +27,22 @@ class AddressBook {
         }
     }
 
-    // View all persons in a given city
-    viewPersonsByCity(city) {
-        let results = this.contacts.filter(contact => 
+    // Get persons count by city
+    getCountByCity(city) {
+        let count = this.contacts.filter(contact => 
             contact.city.toLowerCase() === city.toLowerCase()
-        ).map(contact => contact.toString());
+        ).reduce((total) => total + 1, 0);
 
-        if (results.length > 0) {
-            console.log(`\nPeople in ${city}:`);
-            results.forEach(person => console.log(person));
-        } else {
-            console.log(`No contacts found in ${city}.`);
-        }
+        console.log(`\nNumber of persons in ${city}: ${count}`);
     }
 
-    // View all persons in a given state
-    viewPersonsByState(state) {
-        let results = this.contacts.filter(contact => 
+    // Get persons count by state
+    getCountByState(state) {
+        let count = this.contacts.filter(contact => 
             contact.state.toLowerCase() === state.toLowerCase()
-        ).map(contact => contact.toString());
+        ).reduce((total) => total + 1, 0);
 
-        if (results.length > 0) {
-            console.log(`\nPeople in ${state}:`);
-            results.forEach(person => console.log(person));
-        } else {
-            console.log(`No contacts found in ${state}.`);
-        }
+        console.log(`\nNumber of persons in ${state}: ${count}`);
     }
 }
 
