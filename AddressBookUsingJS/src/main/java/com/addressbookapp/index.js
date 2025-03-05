@@ -1,17 +1,16 @@
 const readline = require("readline-sync");
-const AddressBook = require("./addressBook");
+const AddressBook = require("./AddressBook");
 const Contact = require("./contact");
 
-let myAddressBook = new AddressBook("Personal");
+let myAddressBook = new AddressBook();
 
 while (true) {
-    console.log("\nAddress Book Menu:");
-    console.log("1.Add Contact");
-    console.log("2. Display Contacts");
-    console.log("3. Edit Contact");
-    console.log("4. Delete Contact");
-    console.log("5. Count Contacts");
-    console.log("6. Exit");
+    console.log("\n Address Book Menu:");
+    console.log("1️ Add Contact");
+    console.log("2️ Display Contacts");
+    console.log("3️ Delete Contact");
+    console.log("4️ Count Contacts");
+    console.log("5️ Exit");
 
     let choice = readline.questionInt("Enter your choice: ");
 
@@ -30,48 +29,29 @@ while (true) {
                 let newContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
                 myAddressBook.addContact(newContact);
             } catch (error) {
-                console.log(" Error: " + error.message);
+                console.log("Error: " + error.message);
             }
             break;
+
         case 2:
             myAddressBook.displayContacts();
             break;
+
         case 3:
-            let editFirstName = readline.question("Enter First Name to Edit: ");
-            let editLastName = readline.question("Enter Last Name to Edit: ");
-
-            if (myAddressBook.findContactByName(editFirstName, editLastName)) {
-                try {
-                    let firstName = readline.question("Enter New First Name: ");
-                    let lastName = readline.question("Enter New Last Name: ");
-                    let address = readline.question("Enter New Address: ");
-                    let city = readline.question("Enter New City: ");
-                    let state = readline.question("Enter New State: ");
-                    let zip = readline.question("Enter New Zip Code: ");
-                    let phoneNumber = readline.question("Enter New Phone Number: ");
-                    let email = readline.question("Enter New Email: ");
-
-                    let updatedContact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-                    myAddressBook.editContact(editFirstName, editLastName, updatedContact);
-                } catch (error) {
-                    console.log(" Error: " + error.message);
-                }
-            } else {
-                console.log(" Contact not found.");
-            }
-            break;
-        case 4:
             let deleteFirstName = readline.question("Enter First Name to Delete: ");
             let deleteLastName = readline.question("Enter Last Name to Delete: ");
             myAddressBook.deleteContact(deleteFirstName, deleteLastName);
             break;
-        case 5:
-            console.log("Total Contacts:", myAddressBook.getContactCount());
+
+        case 4:
+            console.log(" Total Contacts:", myAddressBook.getContactCount());
             break;
-        case 6:
-            console.log(" Exiting...");
+
+        case 5:
+            console.log(" Exiting Address Book...");
             process.exit();
+
         default:
-            console.log("Invalid choice, please try again.");
+            console.log(" Invalid choice, please try again.");
     }
 }
